@@ -1,15 +1,3 @@
-TASK:
-- pull centos from dockerhub
-- install java
-- create a directory (/opt/tomcat)
-- change work directory to /opt/tomcat
-- download tomcat packages
-- extract tar.gz file
-- rename to tomcat directory
-- tell docker to run in port 8080
-- start tomcat services
-
-****************************
 FROM centos:latest
 ADD 'http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/Packages/centos-gpg-keys-8-3.el8.noarch.rpm' .
 RUN rpm -i 'centos-gpg-keys-8-3.el8.noarch.rpm'
@@ -23,5 +11,3 @@ RUN tar -xvzf apache-tomcat-9.0.68.tar.gz
 RUN mv apache-tomcat-9.0.68/* /opt/tomcat
 EXPOSE 8080
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
-
-***********************************
