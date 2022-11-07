@@ -1,0 +1,10 @@
+TASK:
+- pull centos from dockerhub
+- install java
+- create a directory (/opt/tomcat)
+- change work directory to /opt/tomcat
+- download tomcat packages
+- extract tar.gz file
+- rename to tomcat directory
+- tell docker to run in port 8080
+- start tomcat services
