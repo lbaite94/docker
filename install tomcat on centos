@@ -8,3 +8,20 @@ TASK:
 - rename to tomcat directory
 - tell docker to run in port 8080
 - start tomcat services
+
+****************************
+FROM centos:latest
+ADD 'http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/Packages/centos-gpg-keys-8-3.el8.noarch.rpm' .
+RUN rpm -i 'centos-gpg-keys-8-3.el8.noarch.rpm'
+RUN dnf --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos -y
+RUN dnf distro-sync -y
+RUN yum install java -y
+RUN mkdir /opt/tomcat
+WORKDIR /opt/tomcat
+ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.68/bin/apache-tomcat-9.0.68.tar.gz .
+RUN tar -xvzf apache-tomcat-9.0.68.tar.gz
+RUN mv apache-tomcat-9.0.68/* /opt/tomcat
+EXPOSE 8080
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
+
+***********************************
